@@ -1,0 +1,36 @@
+// Ejercicio 3
+
+// Un factor primo es un número primo que divide exactamente a otro número sin dejar residuo. 
+// Los factores primos de 13195 son 5, 7, 13 y 29.
+// ¿Cuál es el factor primo más grande del número? 600851475143
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    long long num = 600851475143;
+    long long maxPrimo = 0;
+
+    // Dividir el número por 2 hasta que sea impar
+    while (num % 2 == 0) {
+        maxPrimo = 2;
+        num /= 2;
+    }
+
+    // Probar los posibles factores primos desde 3 en adelante
+    for (long long i = 3; i <= num; i += 2) {
+        while (num % i == 0) {
+            maxPrimo = i;
+            num /= i;
+        }
+    }
+
+    // Si num es un número primo mayor que 2
+    if (num > 2) {
+        maxPrimo = num;
+    }
+
+    cout << "El factor primo más grande es: " << maxPrimo << endl;
+
+    return 0;
+}
